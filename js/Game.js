@@ -52,10 +52,11 @@ class Game {
 		}
 
 		for(var i=0;i<displayWidth*4;i+=250){
-			h1 = createSprite(1200,417);
+			h1 = createSprite(i,417);
 			h1.addImage("hurdleRow1",hurdle);
 			h1.scale =0.8;
 			h1.setCollider("rectangle",10,0,60,60);
+			h1Group.add(h1);
 		}
 	
 		for(var i=0;i<displayWidth*4;i+=250){
@@ -63,6 +64,7 @@ class Game {
 			h2.addImage("hurdleRow2",hurdle);
 			h2.scale =0.8;
 			h2.setCollider("rectangle",10,0,60,60);
+			h2Group.add(h2);
 		}
 	
 		for(var i=0;i<displayWidth*4;i+=250){
@@ -70,6 +72,7 @@ class Game {
 			h3.addImage("hurdleRow3",hurdle);
 			h3.scale =0.8;
 			h3.setCollider("rectangle",10,0,60,60);
+			h3Group.add(h3);
 		}
 
 		for(var i=0;i<displayWidth*4;i+=250){
@@ -77,6 +80,7 @@ class Game {
 			h4.addImage("hurdleRow4",hurdle);
 			h4.scale =0.8;
 			h4.setCollider("rectangle",10,0,60,60);
+			h4Group.add(h4);
 		}
 	
 		car1 = createSprite(10,300,10,10);
@@ -134,6 +138,13 @@ class Game {
 				fill("red");
 				ellipse(x,y,60,60);
 				cars[index - 1].shapeColor = "red";
+				if(cars[index - 1].marking === "eliminated"){
+					cars[index - 1].remove();
+					noLoop();
+				}
+				else{
+					loop();
+				}
 				camera.position.x = cars[index-1].x+500;
 				camera.position.y = displayWidth/2;
 				if(keyIsDown(UP_ARROW)){
